@@ -2198,14 +2198,14 @@ nif_set_scheduler_id(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[])
 }
 
 static void
-l_release (EV_P)
+l_release (EV_P) EV_THROW
 {
     struct PollSet *ps = (struct PollSet *)ev_userdata (EV_A);
     enif_mutex_unlock(ps->lock);
 }
 
 static void
-l_acquire (EV_P)
+l_acquire (EV_P) EV_THROW
 {
     struct PollSet *ps = (struct PollSet *)ev_userdata (EV_A);
     enif_mutex_lock(ps->lock);

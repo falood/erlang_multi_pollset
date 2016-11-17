@@ -141,6 +141,18 @@ EV_CPP(extern "C" {)
 # define EV_WALK_ENABLE 0 /* not yet */
 #endif
 
+#ifndef SOCK_CLOEXEC
+# ifdef __APPLE__
+#  define SOCK_CLOEXEC O_CLOEXEC
+# endif
+#endif
+
+#ifndef MSG_NOSIGNAL
+# ifdef __APPLE__
+#  define MSG_NOSIGNAL SO_NOSIGPIPE
+# endif
+#endif
+
 /*****************************************************************************/
 
 #if EV_CHILD_ENABLE && !EV_SIGNAL_ENABLE
